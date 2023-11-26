@@ -89,7 +89,7 @@
   - **Success Code:** `201 Created`
     ```json
     {
-      "id": 123,
+      "id": "ObjectID(student)",
       "firstName": "John",
       "lastName": "Doe",
       "username": "john_doe123",
@@ -118,7 +118,7 @@
   - **Success Code:** `200 OK`
     ```json
     {
-      "id": 123,
+      "id": "ObjectID(student)",
       "firstName": "John",
       "lastName": "Doe",
       "username": "john_doe123",
@@ -147,7 +147,7 @@
     ```json
     [
       {
-        "id": 123,
+        "id": "ObjectID(student)",
         "firstName": "John",
         "lastName": "Doe",
         "username": "john_doe123",
@@ -158,7 +158,7 @@
         "exams": ["ObjectID(exam)", "ObjectID(exam)", "ObjectID(exam)"]
       },
       {
-        "id": 124,
+        "id": "ObjectID(student)",
         "firstName": "Jane",
         "lastName": "Smith",
         "username": "jane_smith456",
@@ -190,14 +190,14 @@
     "picture": "https://example.com/updated_doe.jpg",
     "dateOfBirth": "1990-01-01",
     "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
-    "exams": ["ObjectID(exam)", "ObjectID(exam)"],  
+    "exams": ["ObjectID(exam)", "ObjectID(exam)"]
   }
   ```
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
     {
-      "id": 123,
+      "id": "ObjectID(student)",
       "firstName": "Updated",
       "lastName": "Doe",
       "username": "updated_doe123",
@@ -205,7 +205,7 @@
       "picture": "https://example.com/updated_doe.jpg",
       "dateOfBirth": "1990-01-01",
       "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
-      "exams": ["ObjectID(exam)", "ObjectID(exam)", "ObjectID(exam)"]    
+      "exams": ["ObjectID(exam)", "ObjectID(exam)", "ObjectID(exam)"]
     }
     ```
   - **Error Code:** `404 Not Found`
@@ -253,7 +253,11 @@
     {
       "name": "Midterm Exam",
       "classroom": "ObjectID(classroom)",
-      "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+      "questions": [
+        "ObjectID(question)",
+        "ObjectID(question)",
+        "ObjectID(question)"
+      ]
     }
     ```
   - **Error Code:** `404 Not Found`
@@ -277,13 +281,21 @@
         "id": "ObjectID(exam)",
         "name": "Midterm Exam",
         "classroom": "ObjectID(classroom)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ]
       },
       {
         "id": "ObjectID(exam)",
         "name": "Final Exam",
         "classroom": "ObjectID(classroom)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ]
       }
     ]
     ```
@@ -561,7 +573,11 @@
         "_id": "submission123",
         "student": "ObjectID(student)",
         "exam": "ObjectID(exam)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"],
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ],
         "answers": ["option1", "option2", "option3"]
       },
       "result": {
@@ -629,7 +645,11 @@
         "_id": "submission123",
         "student": "ObjectID(student)",
         "exam": "ObjectID(exam)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"],
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ],
         "answers": ["option1", "option2", "option3"]
       }
       // ... other submissions
@@ -1288,7 +1308,11 @@
   {
     "name": "Midterm Exam",
     "classroom": "ObjectID(classroom)",
-    "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+    "questions": [
+      "ObjectID(question)",
+      "ObjectID(question)",
+      "ObjectID(question)"
+    ]
   }
   ```
 - **Response Format:** `application/json`
@@ -1298,7 +1322,11 @@
       "id": "ObjectID(exam)",
       "name": "Midterm Exam",
       "classroom": "ObjectID(classroom)",
-      "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+      "questions": [
+        "ObjectID(question)",
+        "ObjectID(question)",
+        "ObjectID(question)"
+      ]
     }
     ```
   - **Error Code:** `500 Internal Server Error`
@@ -1322,7 +1350,11 @@
       "id": "ObjectID(exam)",
       "name": "Midterm Exam",
       "classroom": "ObjectID(classroom)",
-      "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+      "questions": [
+        "ObjectID(question)",
+        "ObjectID(question)",
+        "ObjectID(question)"
+      ]
     }
     ```
   - **Error Code:** `404 Not Found`
@@ -1347,13 +1379,21 @@
         "id": "ObjectID(exam)",
         "name": "Midterm Exam",
         "classroom": "ObjectID(classroom)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ]
       },
       {
         "id": "ObjectID(exam)",
         "name": "Final Exam",
         "classroom": "ObjectID(classroom)",
-        "questions": ["ObjectID(question)", "ObjectID(question)", "ObjectID(question)"]
+        "questions": [
+          "ObjectID(question)",
+          "ObjectID(question)",
+          "ObjectID(question)"
+        ]
       }
     ]
     ```
