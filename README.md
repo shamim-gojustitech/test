@@ -1,5 +1,5 @@
 # Exammer API
-
+[[TOC]]
 # Students Section
 ## Profile
 ### 1. Create a New Student
