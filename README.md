@@ -170,8 +170,13 @@
       }
     ]
     ```
-  - **Error Code:** No specific error handling for this endpoint.
-  <hr>
+  - **Error Code:** `500 Internal Server Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+    <hr>
 
 ### 4. Update Student Information by ID
 
