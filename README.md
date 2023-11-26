@@ -132,7 +132,7 @@
 
 ### 3. Get a List of All Students
 
-- **Endpoint:** `student/profile/find/all`
+- **Endpoint:** `student/profile/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all students.`
 - **Request Format:** `No request body required.`
@@ -249,7 +249,6 @@
   - **Success Code:** `200 OK`
     ```json
     {
-      "id": "Exam ID",
       "name": "Midterm Exam",
       "classroom": "Classroom ID",
       "questions": ["Question ID 1", "Question ID 2", "Question ID 3"]
@@ -706,7 +705,7 @@
 
 ### 3. Get a List of All Teachers
 
-- **Endpoint:** `teacher/profile/find/all`
+- **Endpoint:** `teacher/profile/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all teachers.`
 - **Request Format:** `No request body required.`
@@ -742,7 +741,7 @@
 
 ### 4. Update Teacher Information by ID
 
-- **Endpoint:** `teacher/profile/update/:id`
+- **Endpoint:** `teacher/profile/update/:id ❌`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific teacher by ID.`
 - **URL Parameters:**
@@ -868,7 +867,7 @@
 
 ### 3. Get a List of All Classrooms
 
-- **Endpoint:** `teacher/classroom/find/all`
+- **Endpoint:** `teacher/classroom/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all classrooms.`
 - **Request Format:** `No request body required.`
@@ -908,7 +907,7 @@
 
 ### 4. Update Classroom Information
 
-- **Endpoint:** `teacher/classroom/update/:id`
+- **Endpoint:** `teacher/classroom/update/:id ❌`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific classroom by ID.`
 - **URL Parameters:**
@@ -1002,7 +1001,7 @@
 
 ### 7. Remove Teacher from Classroom
 
-- **Endpoint:** `teacher/classroom/remove/teacher/:id`
+- **Endpoint:** `teacher/classroom/remove/teacher/:id ❌`
 - **Method:** `PUT`
 - **Description:** `Removes a teacher from a classroom.`
 - **URL Parameters:**
