@@ -142,7 +142,6 @@
 - **Endpoint:** `student/profile/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all students.`
-- **Request Format:** `No request body required.`
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
@@ -270,7 +269,6 @@
 - **Endpoint:** `student/exam/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all exams.`
-- **Request Format:** No request body required.
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
@@ -716,7 +714,6 @@
 - **Endpoint:** `teacher/profile/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all teachers.`
-- **Request Format:** `No request body required.`
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
@@ -875,7 +872,6 @@
 - **Endpoint:** `teacher/classroom/find/all ❌`
 - **Method:** `GET`
 - **Description:** `Gets a list of all classrooms.`
-- **Request Format:** `No request body required.`
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
@@ -1191,7 +1187,6 @@
 - **Endpoint:** `teacher/question/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all questions.`
-- **Request Format:** `No request body required.`
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
