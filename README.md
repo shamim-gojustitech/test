@@ -1,7 +1,7 @@
 # Exammer API
 
-## Students
-
+# Students Section
+## Profile
 ### 1. Create a New Student
 
 - **Endpoint:** `student/profile/create`
@@ -44,10 +44,11 @@
 
 ### 2. Get Student Details by ID
 
-- **Endpoint:** `student/profile/:id`
+- **Endpoint:** `student/profile/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific student by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Student's ID (Example: `student/profile/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -72,7 +73,7 @@
 
 ### 3. Get a List of All Students
 
-- **Endpoint:** `student/profile/all`
+- **Endpoint:** `student/profile/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all students.`
 - **Request Format:** `No request body required.`
@@ -110,6 +111,8 @@
 - **Endpoint:** `student/profile/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific student by ID.`
+- **URL Parameters:**
+      - `id`: Student's ID (Example: `student/profile/update/101`)
 - **Request Format:** `json`
   ```json
   {
@@ -150,7 +153,8 @@
 - **Endpoint:** `student/profile/delete/:id`
 - **Method:** `DELETE`
 - **Description:** `Deletes a student by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Student's ID (Example: `student/profile/delete/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -166,8 +170,418 @@
     ```
     <hr>
 
-## Teachers
 
+
+
+// more to be done
+
+
+
+## Exam
+
+### 1. Get Exam Details by ID
+
+- **Endpoint:** `student/exam/find/:id`
+- **Method:** `GET`
+- **Description:** `Gets information about a specific exam by ID.`
+- **URL Parameters:**
+      - `id`: Exam's ID (Example: `student/exam/find/101`)
+- **Response Format:** `json`
+  - **Success Code:** `200 OK`
+    ```json
+    {
+      "id": "Exam ID",
+      "name": "Midterm Exam",
+      "classroom": "Classroom ID",
+      "questions": ["Question ID 1", "Question ID 2", "Question ID 3"]
+    }
+    ```
+  - **Error Code:** `404 Not Found`
+    ```json
+    {
+      "error": "Exam not found"
+    }
+    ```
+    <hr>
+
+### 2. Get a List of All Exams
+
+- **Endpoint:** `student/exam/find/all`
+- **Method:** `GET`
+- **Description:** `Gets a list of all exams.`
+- **Request Format:** No request body required.
+- **Response Format:** `json`
+  - **Success Code:** `200 OK`
+    ```json
+    [
+      {
+        "id": "Exam ID 1",
+        "name": "Midterm Exam",
+        "classroom": "Classroom ID",
+        "questions": ["Question ID 1", "Question ID 2", "Question ID 3"]
+      },
+      {
+        "id": "Exam ID 2",
+        "name": "Final Exam",
+        "classroom": "Classroom ID",
+        "questions": ["Question ID 4", "Question ID 5", "Question ID 6"]
+      }
+    ]
+    ```
+  - **Error Code:** `500 Internal Server Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+    <hr>
+
+
+
+## Results
+### 1. Get All Results for a Specific Student
+
+   - **Endpoint:** `student/results/find/student/:studentId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve all results for a specific student.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/student/results/student/123`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "exam": {
+                  "id": 101,
+                  "name": "Math Exam"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified student"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+        <hr>
+
+### 2. Get All Results for a Specific Exam
+
+   - **Endpoint:** `student/results/find/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve all results for a specific exam.`
+   - **URL Parameters:**
+      - `examId`: Exam's ID (Example: `/student/results/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 3. Get Result of a Specific Student in a Specific Exam
+
+   - **Endpoint:** `student/results/find/student/:studentId/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the result of a specific student in a specific exam.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/student/results/student/123`)
+      - `examId`: Exam's ID (Example: `/student/results/student/123/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         {
+            "id": 1,
+            "score": 85,
+            "student": {
+               "id": 123,
+               "firstName": "John",
+               "lastName": "Doe"
+            },
+            "exam": {
+               "id": 101,
+               "name": "Math Exam"
+            }
+         }
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "Result not found for the specified student and exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 4. Remove Result by Student ID and Exam ID
+
+   - **Endpoint:** `student/results/remove/student/:studentId/exam/:examId`
+   - **Method:** `DELETE`
+   - **Description:** `Remove a result for a specific student in a specific exam.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/student/results/student/123`)
+      - `examId`: Exam's ID (Example: `/student/results/student/123/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         {
+            "message": "Result removed successfully"
+         }
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "Result not found for the specified student and exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 5. Get All Results
+
+   - **Endpoint:** `student/results/find/all`
+   - **Method:** `GET`
+   - **Description:** `Retrieve a list of all results.`
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               },
+               "exam": {
+                  "id": 101,
+                  "name": "Math Exam"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 6. Get Leaderboard for a Specific Exam
+
+   - **Endpoint:** `student/results/leaderboard/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the leaderboard for a specific exam, sorted by score in descending order.`
+   - **URL Parameters:**
+      - `examId`: Exam's ID (Example: `/student/results/leaderboard/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 95,
+               "student": {
+                  "id": 124,
+                  "firstName": "Alice",
+                  "lastName": "Wonder"
+               }
+            },
+            // ... other leaderboard entries
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 7. Get All-Time Leaderboard
+
+   - **Endpoint:** `student/results/leaderboard/all-time`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the all-time leaderboard, sorted by total score in descending order.`
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               },
+               "totalScore": 320
+            },
+            // ... other leaderboard entries
+         ]
+         ```
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+
+## Exam
+### 1. Submit Exam
+
+- **Endpoint:** `/exam/submit/:examId`
+- **Method:** `POST`
+- **Description:** `Submits an exam for a specific student.`
+- **URL Parameters:**
+  - `examId`: Exam ID (Example: `/exam/submit/101`)
+- **Request Format:** `json`
+  ```json
+  {
+    "studentId": "student123",
+    "questionIds": ["q1", "q2", "q3"],
+    "answers": ["option1", "option2", "option3"]
+  }
+- **Response Format:** `json`
+  - **Success Code:** `201 Created`
+    ```json
+    {
+      "submission": {
+        "_id": "submission123",
+        "student": "student123",
+        "exam": "examId",
+        "questions": ["q1", "q2", "q3"],
+        "answers": ["option1", "option2", "option3"],
+        "createdAt": "timestamp"
+      },
+      "result": {
+        "_id": "result123",
+        "student": "student123",
+        "exam": "examId",
+        "score": 2,
+        "createdAt": "timestamp"
+      }
+    }
+    ```
+  - **Error Code:** `500 Internal Sever Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+  <hr>
+
+### 2. Remove Exam Submission
+
+- **Endpoint:** `/exam/remove/:examId`
+- **Method:** `DELETE`
+- **Description:** `Removes an exam submission for a specific student.`
+- **URL Parameters:**
+  - `examId`: Exam ID (Example: `/exam/remove/101`)
+- **Request Format:** `json`
+  ```json
+  {
+    "studentId": "student123",
+  }
+- **Response Format:** `json`
+  - **Success Code:** `200 OK`
+    ```json
+    {
+      "message": "Exam removed successfully"
+    }
+    ```
+  - **Error Code:** `500 Internal Sever Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+  <hr>
+
+### 3. Get Student Submissions by Exam
+
+- **Endpoint:** `/exam/submit/find/:examId`
+- **Method:** `GET`
+- **Description:** `Gets a student's submissions for a specific exam.`
+- **URL Parameters:**
+  - `examId`: Exam ID (Example: `/exam/remove/101`)
+- **Request Format:** `json`
+  ```json
+  {
+    "studentId": "student123",
+  }
+- **Response Format:** `json`
+  - **Success Code:** `200 OK`
+    ```json
+    [
+      {
+        "_id": "submission123",
+        "student": "student123",
+        "exam": "examId",
+        "questions": ["q1", "q2", "q3"],
+        "answers": ["option1", "option2", "option3"],
+        "createdAt": "timestamp"
+      },
+      // ... other submissions
+    ]
+    ```
+  - **Error Code:** `500 Internal Sever Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+  <hr>
+
+
+
+# Teachers Section
 ### 1. Create a New Teacher
 
 - **Endpoint:** `teacher/profile/create`
@@ -206,10 +620,11 @@
 
 ### 2. Get Teacher Details by ID
 
-- **Endpoint:** `teacher/profile/:id`
+- **Endpoint:** `teacher/profile/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific teacher by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Teacher's ID (Example: `teacher/profile/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -232,7 +647,7 @@
 
 ### 3. Get a List of All Teachers
 
-- **Endpoint:** `teacher/profile/all`
+- **Endpoint:** `teacher/profile/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all teachers.`
 - **Request Format:** `No request body required.`
@@ -271,6 +686,8 @@
 - **Endpoint:** `teacher/profile/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific teacher by ID.`
+- **URL Parameters:**
+      - `id`: Teacher's ID (Example: `teacher/profile/update/101`)
 - **Request Format:** `json`
   ```json
   {
@@ -307,7 +724,8 @@
 - **Endpoint:** `teacher/profile/delete/:id`
 - **Method:** `DELETE`
 - **Description:** `Deletes a teacher by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Teacher's ID (Example: `teacher/profile/delete/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -327,7 +745,7 @@
 
 ### 1. Create a New Classroom
 
-- **Endpoint:** `classroom/create`
+- **Endpoint:** `teacher/classroom/create`
 - **Method:** `POST`
 - **Description:** `Creates a new classroom with the provided information.`
 - **Request Format:** `json`
@@ -362,10 +780,11 @@
 
 ### 2. Get Classroom Details by ID
 
-- **Endpoint:** `classroom/findId/:id`
+- **Endpoint:** `teacher/classroom/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific classroom by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/find/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -390,7 +809,7 @@
 
 ### 3. Get a List of All Classrooms
 
-- **Endpoint:** `classroom/find/all`
+- **Endpoint:** `teacher/classroom/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all classrooms.`
 - **Request Format:** `No request body required.`
@@ -430,9 +849,11 @@
 
 ### 4. Update Classroom Information
 
-- **Endpoint:** `classroom/update/:id`
+- **Endpoint:** `teacher/classroom/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific classroom by ID.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/update/101`)
 - **Request Format:** `json`
   ```json
   {
@@ -465,10 +886,11 @@
 
 ### 5. Delete Classroom
 
-- **Endpoint:** `classroom/delete/:id`
+- **Endpoint:** `teacher/classroom/delete/:id`
 - **Method:** `DELETE`
 - **Description:** `Deletes a classroom by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/update/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -486,13 +908,14 @@
 
 ### 6. Add Teacher to Classroom
 
-- **Endpoint:** `classroom/add/teacher`
+- **Endpoint:** `teacher/classroom/add/teacher/:id`
 - **Method:** `PUT`
 - **Description:** `Adds a teacher to a classroom.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/add/teacher/101`)
 - **Request Format:** `json`
   ```json
   {
-    "classroomId": "classroomId123",
     "teacherId": "newTeacherId"
   }
   ```
@@ -520,13 +943,14 @@
 
 ### 7. Remove Teacher from Classroom
 
-- **Endpoint:** `classroom/remove/teacher`
+- **Endpoint:** `teacher/classroom/remove/teacher/:id`
 - **Method:** `PUT`
 - **Description:** `Removes a teacher from a classroom.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/remove/teacher/101`)
 - **Request Format:** `json`
   ```json
   {
-    "classroomId": "classroomId123",
     "teacherId": "teacherIdToRemove"
   }
   ```
@@ -554,13 +978,14 @@
 
 ### 8. Add Student to Classroom
 
-- **Endpoint:** `classroom/add/student`
+- **Endpoint:** `teacher/classroom/add/student/:id`
 - **Method:** `PUT`
 - **Description:** `Adds a student to a classroom.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/add/student/101`)
 - **Request Format:** `json`
   ```json
   {
-    "classroomId": "classroomId123",
     "studentId": "newStudentId"
   }
   ```
@@ -588,13 +1013,14 @@
 
 ### 9. Remove Student from Classroom
 
-- **Endpoint:** `classroom/remove/student`
+- **Endpoint:** `teacher/classroom/remove/student/:id`
 - **Method:** `PUT`
 - **Description:** `Removes a student from a classroom.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/add/student/101`)
 - **Request Format:** `json`
   ```json
   {
-    "classroomId": "classroomId123",
     "studentId": "studentIdToRemove"
   }
   ```
@@ -622,10 +1048,11 @@
 
 ### 10. Get All Students in a Classroom
 
-- **Endpoint:** `classroom/students/:classroomId`
+- **Endpoint:** `teacher/classroom/students/:id`
 - **Method:** `GET`
 - **Description:** `Gets a list of all students in a specific classroom.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Classroom's ID (Example: `teacher/classroom/students/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -650,7 +1077,7 @@
 
 ### 1. Create a New Question
 
-- **Endpoint:** `question/create`
+- **Endpoint:** `teacher/question/create`
 - **Method:** `POST`
 - **Description:** `Creates a new question with the provided information.`
 - **Request Format:** `json`
@@ -681,10 +1108,11 @@
 
 ### 2. Get Question Details by ID
 
-- **Endpoint:** `question/find/:id`
+- **Endpoint:** `teacher/question/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific question by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Question's ID (Example: `teacher/question/find/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -705,7 +1133,7 @@
 
 ### 3. Get a List of All Questions
 
-- **Endpoint:** `question/find/all`
+- **Endpoint:** `teacher/question/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all questions.`
 - **Request Format:** `No request body required.`
@@ -737,9 +1165,11 @@
 
 ### 4. Update Question Information
 
-- **Endpoint:** `question/update/:id`
+- **Endpoint:** `teacher/question/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific question by ID.`
+- **URL Parameters:**
+      - `id`: Question's ID (Example: `teacher/question/update/101`)
 - **Request Format:** `json`
   ```json
   {
@@ -778,10 +1208,11 @@
 
 ### 5. Delete Question
 
-- **Endpoint:** `question/delete/:id`
+- **Endpoint:** `teacher/question/delete/:id`
 - **Method:** `DELETE`
 - **Description:** `Deletes a question by ID.`
-- **Request Format:** `No request body required.`
+- **URL Parameters:**
+      - `id`: Question's ID (Example: `teacher/question/delete/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -797,7 +1228,7 @@
     ```
     <hr>
 
-# Exams
+## Exam
 
 ### 1. Create a New Exam
 
@@ -835,7 +1266,8 @@
 - **Endpoint:** `teacher/exam/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific exam by ID.`
-- **Request Format:** No request body required.
+- **URL Parameters:**
+      - `id`: Exam's ID (Example: `teacher/exam/find/101`)
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
     ```json
@@ -891,6 +1323,8 @@
 - **Endpoint:** `teacher/exam/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific exam by ID.`
+- **URL Parameters:**
+      - `id`: Exam's ID (Example: `teacher/exam/update/101`)
 - **Request Format:** `json`
   ```json
   {
@@ -930,6 +1364,8 @@
 - **Endpoint:** `teacher/exam/delete/:id`
 - **Method:** `DELETE`
 - **Description:** `Deletes an exam by ID.`
+- **URL Parameters:**
+      - `id`: Exam's ID (Example: `teacher/exam/delete/101`)
 - **Request Format:** No request body required.
 - **Response Format:** `json`
   - **Success Code:** `200 OK`
@@ -945,3 +1381,238 @@
     }
     ```
     <hr>
+
+
+## Results
+### 1. Get All Results for a Specific Student
+
+   - **Endpoint:** `teacher/results/find/student/:studentId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve all results for a specific student.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/teacher/results/student/123`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "exam": {
+                  "id": 101,
+                  "name": "Math Exam"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified student"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+        <hr>
+
+### 2. Get All Results for a Specific Exam
+
+   - **Endpoint:** `teacher/results/find/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve all results for a specific exam.`
+   - **URL Parameters:**
+      - `examId`: Exam's ID (Example: `/teacher/results/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 3. Get Result of a Specific Student in a Specific Exam
+
+   - **Endpoint:** `teacher/results/find/student/:studentId/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the result of a specific student in a specific exam.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/teacher/results/student/123`)
+      - `examId`: Exam's ID (Example: `/teacher/results/student/123/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         {
+            "id": 1,
+            "score": 85,
+            "student": {
+               "id": 123,
+               "firstName": "John",
+               "lastName": "Doe"
+            },
+            "exam": {
+               "id": 101,
+               "name": "Math Exam"
+            }
+         }
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "Result not found for the specified student and exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 4. Remove Result by Student ID and Exam ID
+
+   - **Endpoint:** `teacher/results/remove/student/:studentId/exam/:examId`
+   - **Method:** `DELETE`
+   - **Description:** `Remove a result for a specific student in a specific exam.`
+   - **URL Parameters:**
+      - `studentId`: Student's ID (Example: `/teacher/results/student/123`)
+      - `examId`: Exam's ID (Example: `/teacher/results/student/123/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         {
+            "message": "Result removed successfully"
+         }
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "Result not found for the specified student and exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 5. Get All Results
+
+   - **Endpoint:** `teacher/results/find/all`
+   - **Method:** `GET`
+   - **Description:** `Retrieve a list of all results.`
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 85,
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               },
+               "exam": {
+                  "id": 101,
+                  "name": "Math Exam"
+               }
+            },
+            // ... other results
+         ]
+         ```
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 6. Get Leaderboard for a Specific Exam
+
+   - **Endpoint:** `teacher/results/leaderboard/exam/:examId`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the leaderboard for a specific exam, sorted by score in descending order.`
+   - **URL Parameters:**
+      - `examId`: Exam's ID (Example: `/teacher/results/leaderboard/exam/101`)
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "id": 1,
+               "score": 95,
+               "student": {
+                  "id": 124,
+                  "firstName": "Alice",
+                  "lastName": "Wonder"
+               }
+            },
+            // ... other leaderboard entries
+         ]
+         ```
+      - **Error Code:** `404 Not Found`
+         ``` json 
+         {
+            "error": "No results found for the specified exam"
+         }
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
+
+### 7. Get All-Time Leaderboard
+
+   - **Endpoint:** `teacher/results/leaderboard/all-time`
+   - **Method:** `GET`
+   - **Description:** `Retrieve the all-time leaderboard, sorted by total score in descending order.`
+   - **Response Format:** `json`
+      - **Success Code:** `200 OK`
+         ``` json
+         [
+            {
+               "student": {
+                  "id": 123,
+                  "firstName": "John",
+                  "lastName": "Doe"
+               },
+               "totalScore": 320
+            },
+            // ... other leaderboard entries
+         ]
+         ```
+      - **Error Code:** `500 Internal Server Error`
+         ``` json 
+         {
+            "error": "Internal Server Error"
+         }
+        ```
+      <hr>
