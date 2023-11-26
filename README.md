@@ -237,7 +237,6 @@
     ```
     <hr>
 
-// more to be done
 
 ## Exam
 
@@ -328,7 +327,7 @@
           "name": "Math Exam"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -365,7 +364,7 @@
           "lastName": "Doe"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -472,7 +471,7 @@
           "name": "Math Exam"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `500 Internal Server Error`
@@ -503,7 +502,7 @@
           "lastName": "Wonder"
         }
       }
-      // ... other leaderboard entries
+      // other leaderboard entries
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -537,7 +536,7 @@
         },
         "totalScore": 320
       }
-      // ... other leaderboard entries
+      // other leaderboard entries
     ]
     ```
   - **Error Code:** `500 Internal Server Error`
@@ -652,7 +651,7 @@
         ],
         "answers": ["option1", "option2", "option3"]
       }
-      // ... other submissions
+      // other submissions
     ]
     ```
   - **Error Code:** `500 Internal Sever Error`
@@ -1488,7 +1487,7 @@
           "name": "Math Exam"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -1525,7 +1524,7 @@
           "lastName": "Doe"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -1632,7 +1631,7 @@
           "name": "Math Exam"
         }
       }
-      // ... other results
+      // other results
     ]
     ```
   - **Error Code:** `500 Internal Server Error`
@@ -1663,7 +1662,7 @@
           "lastName": "Wonder"
         }
       }
-      // ... other leaderboard entries
+      // other leaderboard entries
     ]
     ```
   - **Error Code:** `404 Not Found`
@@ -1697,7 +1696,7 @@
         },
         "totalScore": 320
       }
-      // ... other leaderboard entries
+      // other leaderboard entries
     ]
     ```
   - **Error Code:** `500 Internal Server Error`
