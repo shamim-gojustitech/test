@@ -36,11 +36,9 @@
     - [3. Get a List of All Classrooms](#3-get-a-list-of-all-classrooms)
     - [4. Update Classroom Information](#4-update-classroom-information)
     - [5. Delete Classroom](#5-delete-classroom)
-    - [6. Add Teacher to Classroom](#6-add-teacher-to-classroom)
-    - [7. Remove Teacher from Classroom](#7-remove-teacher-from-classroom)
-    - [8. Add Student to Classroom](#8-add-student-to-classroom)
-    - [9. Remove Student from Classroom](#9-remove-student-from-classroom)
-    - [10. Get All Students in a Classroom](#10-get-all-students-in-a-classroom)
+    - [6. Add Student to Classroom](#6-add-student-to-classroom)
+    - [7. Remove Student from Classroom](#7-remove-student-from-classroom)
+    - [8. Get All Students in a Classroom](#8-get-all-students-in-a-classroom)
   - [Question](#question)
     - [1. Create a New Question](#1-create-a-new-question)
     - [2. Get Question Details by ID](#2-get-question-details-by-id)
@@ -76,7 +74,7 @@
   {
     "firstName": "John",
     "lastName": "Doe",
-    "username": "john_doe123",
+    "username": "john_doe",
     "password": "password123",
     "email": "john.doe@example.com",
     "picture": "https://example.com/john_doe.jpg",
@@ -92,7 +90,7 @@
       "id": "ObjectID(student)",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe123",
+      "username": "john_doe",
       "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg",
       "dateOfBirth": "1990-01-01",
@@ -113,7 +111,7 @@
 - **Endpoint:** `student/profile/find/:id`
 - **Method:** `GET`
 - **Description:** `Gets information about a specific student by ID.`
-- **URL Parameters:** - `id`: Student's ID (Example: `student/profile/101`)
+- **URL Parameters:** - `id`: Student's ID (Example: `student/profile/find/101`)
 - **Response Format:** `application/json`
   - **Success Code:** `200 OK`
     ```json
@@ -121,7 +119,7 @@
       "id": "ObjectID(student)",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe123",
+      "username": "john_doe",
       "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg",
       "dateOfBirth": "1990-01-01",
@@ -139,7 +137,7 @@
 
 ### 3. Get a List of All Students
 
-- **Endpoint:** `student/profile/find/all ❌`
+- **Endpoint:** `student/profile/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all students.`
 - **Response Format:** `application/json`
@@ -150,7 +148,7 @@
         "id": "ObjectID(student)",
         "firstName": "John",
         "lastName": "Doe",
-        "username": "john_doe123",
+        "username": "john_doe",
         "email": "john.doe@example.com",
         "picture": "https://example.com/john_doe.jpg",
         "dateOfBirth": "1990-01-01",
@@ -161,7 +159,7 @@
         "id": "ObjectID(student)",
         "firstName": "Jane",
         "lastName": "Smith",
-        "username": "jane_smith456",
+        "username": "jane_smith",
         "email": "jane.smith@example.com",
         "picture": "https://example.com/jane_smith.jpg",
         "dateOfBirth": "1992-02-02",
@@ -187,12 +185,12 @@
 - **Request Format:** `application/json`
   ```json
   {
-    "firstName": "Updated",
+    "firstName": "Mon",
     "lastName": "Doe",
-    "username": "updated_doe123",
-    "password": "updated_password123",
-    "email": "updated.doe@example.com",
-    "picture": "https://example.com/updated_doe.jpg",
+    "username": "mon_doe",
+    "password": "mon_doe",
+    "email": "mon.doe@example.com",
+    "picture": "https://example.com/mon_doe.jpg",
     "dateOfBirth": "1990-01-01",
     "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
     "exams": ["ObjectID(exam)", "ObjectID(exam)"]
@@ -203,14 +201,15 @@
     ```json
     {
       "id": "ObjectID(student)",
-      "firstName": "Updated",
+      "firstName": "Mon",
       "lastName": "Doe",
-      "username": "updated_doe123",
-      "email": "updated.doe@example.com",
-      "picture": "https://example.com/updated_doe.jpg",
+      "username": "mon_doe",
+      "password": "mon_doe",
+      "email": "mon.doe@example.com",
+      "picture": "https://example.com/mon_doe.jpg",
       "dateOfBirth": "1990-01-01",
       "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
-      "exams": ["ObjectID(exam)", "ObjectID(exam)", "ObjectID(exam)"]
+      "exams": ["ObjectID(exam)", "ObjectID(exam)"]
     }
     ```
   - **Error Code:** `404 Not Found`
@@ -274,7 +273,7 @@
 
 ### 2. Get a List of All Exams
 
-- **Endpoint:** `student/exam/find/all`
+- **Endpoint:** `student/exam/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all exams.`
 - **Response Format:** `application/json`
@@ -681,7 +680,7 @@
   {
     "firstName": "John",
     "lastName": "Doe",
-    "username": "john_doe123",
+    "username": "john_doe",
     "password": "password123",
     "email": "john.doe@example.com",
     "picture": "https://example.com/john_doe.jpg"
@@ -694,7 +693,7 @@
       "id": "ObjectID()",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe123",
+      "username": "john_doe",
       "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg"
     }
@@ -720,7 +719,7 @@
       "id": "ObjectID(teacher)",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe123",
+      "username": "john_doe",
       "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg"
     }
@@ -735,7 +734,7 @@
 
 ### 3. Get a List of All Teachers
 
-- **Endpoint:** `teacher/profile/find/all ❌`
+- **Endpoint:** `teacher/profile/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all teachers.`
 - **Response Format:** `application/json`
@@ -746,7 +745,7 @@
         "id": "ObjectID(teacher)",
         "firstName": "John",
         "lastName": "Doe",
-        "username": "john_doe123",
+        "username": "john_doe",
         "email": "john.doe@example.com",
         "picture": "https://example.com/john_doe.jpg"
       },
@@ -754,7 +753,7 @@
         "id": "ObjectID(teacher)",
         "firstName": "Jane",
         "lastName": "Smith",
-        "username": "jane_smith456",
+        "username": "jane_smith",
         "email": "jane.smith@example.com",
         "picture": "https://example.com/jane_smith.jpg"
       }
@@ -770,19 +769,19 @@
 
 ### 4. Update Teacher Information by ID
 
-- **Endpoint:** `teacher/profile/update/:id ❌`
+- **Endpoint:** `teacher/profile/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific teacher by ID.`
 - **URL Parameters:** - `id`: Teacher's ID (Example: `teacher/profile/update/101`)
 - **Request Format:** `application/json`
   ```json
   {
-    "firstName": "Updated",
+    "firstName": "Mon",
     "lastName": "Doe",
-    "username": "updated_doe123",
-    "password": "updated_password123",
-    "email": "updated.doe@example.com",
-    "picture": "https://example.com/updated_doe.jpg"
+    "username": "mon_doe",
+    "password": "mon_password",
+    "email": "mon.doe@example.com",
+    "picture": "https://example.com/mon_doe.jpg"
   }
   ```
 - **Response Format:** `application/json`
@@ -790,10 +789,10 @@
     ```json
     {
       "id": "ObjectID(teacher)",
-      "firstName": "Updated",
+      "firstName": "Mon",
       "lastName": "Doe",
-      "username": "updated_doe123",
-      "email": "updated.doe@example.com",
+      "username": "mon_doe",
+      "email": "mon.doe@example.com",
       "picture": "https://example.com/updated_doe.jpg"
     }
     ```
@@ -893,7 +892,7 @@
 
 ### 3. Get a List of All Classrooms
 
-- **Endpoint:** `teacher/classroom/find/all ❌`
+- **Endpoint:** `teacher/classroom/find/all`
 - **Method:** `GET`
 - **Description:** `Gets a list of all classrooms.`
 - **Response Format:** `application/json`
@@ -932,7 +931,7 @@
 
 ### 4. Update Classroom Information
 
-- **Endpoint:** `teacher/classroom/update/:id ❌`
+- **Endpoint:** `teacher/classroom/update/:id`
 - **Method:** `PUT`
 - **Description:** `Updates information for a specific classroom by ID.`
 - **URL Parameters:** - `id`: Classroom's ID (Example: `teacher/classroom/update/101`)
@@ -987,75 +986,9 @@
     ```
     <hr>
 
-### 6. Add Teacher to Classroom
 
-- **Endpoint:** `teacher/classroom/add/teacher/:id`
-- **Method:** `PUT`
-- **Description:** `Adds a teacher to a classroom.`
-- **URL Parameters:** - `id`: Classroom's ID (Example: `teacher/classroom/add/teacher/101`)
-- **Request Format:** `application/json`
-  ```json
-  {
-    "teacherId": "ObjectID(teacher)"
-  }
-  ```
-- **Response Format:** `application/json`
-  - **Success Code:** `200 OK`
-    ```json
-    {
-      "id": "ObjectID(classroom)",
-      "name": "Classroom A",
-      "teacher": {
-        // Updated teacher details
-      },
-      "students": [
-        // List of student details
-      ]
-    }
-    ```
-  - **Error Code:** `404 Not Found`
-    ```json
-    {
-      "error": "Classroom not found"
-    }
-    ```
-    <hr>
 
-### 7. Remove Teacher from Classroom
-
-- **Endpoint:** `teacher/classroom/remove/teacher/:id ❌`
-- **Method:** `PUT`
-- **Description:** `Removes a teacher from a classroom.`
-- **URL Parameters:** - `id`: Classroom's ID (Example: `teacher/classroom/remove/teacher/101`)
-- **Request Format:** `application/json`
-  ```json
-  {
-    "teacherId": "ObjectID(teacher)"
-  }
-  ```
-- **Response Format:** `application/json`
-  - **Success Code:** `200 OK`
-    ```json
-    {
-      "id": "ObjectID(teacher)",
-      "name": "Classroom A",
-      "teacher": {
-        // Updated teacher details (without the removed teacher)
-      },
-      "students": [
-        // List of student details
-      ]
-    }
-    ```
-  - **Error Code:** `404 Not Found`
-    ```json
-    {
-      "error": "Classroom not found"
-    }
-    ```
-    <hr>
-
-### 8. Add Student to Classroom
+### 6. Add Student to Classroom
 
 - **Endpoint:** `teacher/classroom/add/student/:id`
 - **Method:** `PUT`
@@ -1089,7 +1022,7 @@
     ```
     <hr>
 
-### 9. Remove Student from Classroom
+### 7. Remove Student from Classroom
 
 - **Endpoint:** `teacher/classroom/remove/student/:id`
 - **Method:** `PUT`
@@ -1123,7 +1056,7 @@
     ```
     <hr>
 
-### 10. Get All Students in a Classroom
+### 8. Get All Students in a Classroom
 
 - **Endpoint:** `teacher/classroom/students/:id`
 - **Method:** `GET`
