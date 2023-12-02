@@ -1,6 +1,10 @@
 # Exammer API
 
 - [Exammer API](#exammer-api)
+- [Authentication Section](#authentication-section)
+    - [Registration](#registration)
+    - [Login](#login)
+    - [Logout](#logout)
 - [Students Section](#students-section)
   - [Profile](#profile)
     - [1. Create a New Student](#1-create-a-new-student)
@@ -59,6 +63,70 @@
     - [5. Get All Results](#5-get-all-results-1)
     - [6. Get Leaderboard for a Specific Exam](#6-get-leaderboard-for-a-specific-exam-1)
     - [7. Get All-Time Leaderboard](#7-get-all-time-leaderboard-1)
+  - [Meet](#meet)
+    - [1. Create a New Meetings](#1-create-a-new-meetings)
+    - [2. Get Meeting Details by ID](#2-get-meeting-details-by-id)
+    - [3. Get a List of All Meetings](#3-get-a-list-of-all-meetings)
+
+# Authentication Section
+### Registration
+- **Endpoint:** `auth/login`
+- **Method:** `POST`
+- **Description:** `To register with email and password.`
+- **Request Format:** `application/json`
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+  ```
+- **Response Format:** `application/json`
+  - **Success Code:** `201 Created`
+    ```json
+    {
+      "id": "ObjectID(user)",
+      "message": "User registered successfully",
+      "password": "password123",
+      "email": "john.doe@example.com"
+    }
+    ```
+    <hr>
+### Login
+- **Endpoint:** `auth/login`
+- **Method:** `POST`
+- **Description:** `To login with email and password.`
+- **Request Format:** `application/json`
+  ```json
+  {
+    "email": "john.doe@example.com",
+    "password": "password123"
+  }
+  ```
+- **Response Format:** `application/json`
+  - **Success Code:** `200`
+    ```json
+    {
+      "id": "ObjectID(user)",
+      "message": "Logged in successfully",
+      "password": "password123",
+      "email": "john.doe@example.com"
+    }
+    ```
+    <hr>
+
+### Logout
+- **Endpoint:** `auth/logout`
+- **Method:** `GET`
+- **Description:** `To logout the session.`
+- **URL Parameter:** `auth/logout`
+- **Response Format:** `application/json`
+  - **Success Code:** `400`
+    ```json
+    {
+      "message": "Logged out successfully"
+    }
+    ```
+    <hr>
 
 # Students Section
 
@@ -1635,6 +1703,96 @@
         "totalScore": 320
       }
       // other leaderboard entries
+    ]
+    ```
+  - **Error Code:** `500 Internal Server Error`
+    ```json
+    {
+      "error": "Internal Server Error"
+    }
+    ```
+    <hr>
+## Meet
+
+### 1. Create a New Meetings
+
+- **Endpoint:** `teacher/meetings/create`
+- **Method:** `POST`
+- **Description:** `Creates a new meetings with the provided information.`
+- **Request Format:** `application/json`
+  ```json
+  {
+    "title": "Meeting Title",
+    "url": "Meeting Lings",
+    "teacher": "ObjectID()", 
+    "students": ["ObjectID()", "ObjectID()"], 
+    "meetingTime": "2023-12-01T14:00:00"
+  ```
+- **Response Format:** `application/json`
+  - **Success Code:** `201 Created`
+    ```json
+    {
+      "id": "ObjectID()",
+      "title": "Meeting Title",
+      "url": "Meeting Lings",
+      "teacher": "ObjectID()", 
+      "students": ["ObjectID()", "ObjectID()"], 
+      "meetingTime": "2023-12-01T14:00:00"
+    }
+    ```
+    <hr>
+
+### 2. Get Meeting Details by ID
+
+- **Endpoint:** `teacher/meetings/find/:id`
+- **Method:** `GET`
+- **Description:** `Gets information about a specific meeting by ID.`
+- **URL Parameters:** - `id`: Meeting's ID (Example: `teacher/meetings/find/101`)
+- **Response Format:** `application/json`
+  - **Success Code:** `200 OK`
+    ```json
+    {
+      "id": "ObjectID()",
+      "title": "Meeting Title",
+      "url": "Meeting Lings",
+      "teacher": "ObjectID()", 
+      "students": ["ObjectID()", "ObjectID()"], 
+      "meetingTime": "2023-12-01T14:00:00"
+    }
+    ```
+  - **Error Code:** `404 Not Found`
+    ```json
+    {
+      "error": "Meeting not found"
+    }
+    ```
+    <hr>
+
+### 3. Get a List of All Meetings
+
+- **Endpoint:** `teacher/meetings/find/all`
+- **Method:** `GET`
+- **Description:** `Gets a list of all meetings.`
+- **Response Format:** `application/json`
+  - **Success Code:** `200 OK`
+    ```json
+    [
+      {
+        "id": "ObjectID()",
+        "title": "Meeting Title",
+        "url": "Meeting Lings",
+        "teacher": "ObjectID()", 
+        "students": ["ObjectID()", "ObjectID()"], 
+        "meetingTime": "2023-12-01T14:00:00"
+      },
+      {
+        "id": "ObjectID()",
+        "title": "Meeting Title",
+        "url": "Meeting Lings",
+        "teacher": "ObjectID()", 
+        "students": ["ObjectID()", "ObjectID()"], 
+        "meetingTime": "2023-12-01T14:00:00"
+      }
     ]
     ```
   - **Error Code:** `500 Internal Server Error`
