@@ -2,7 +2,6 @@
 
 - [Exammer API](#exammer-api)
 - [Authentication Section](#authentication-section)
-    - [Registration](#registration)
     - [Login](#login)
     - [Logout](#logout)
 - [Students Section](#students-section)
@@ -11,7 +10,8 @@
     - [2. Get Student Details by ID](#2-get-student-details-by-id)
     - [3. Get a List of All Students](#3-get-a-list-of-all-students)
     - [4. Update Student Information by ID](#4-update-student-information-by-id)
-    - [5. Delete a Student by ID](#5-delete-a-student-by-id)
+    - [5. Update Student Credential Information by ID](#5-update-student-credential-information-by-id)
+    - [6. Delete a Student by ID](#6-delete-a-student-by-id)
   - [Exam](#exam)
     - [1. Get Exam Details by ID](#1-get-exam-details-by-id)
     - [2. Get a List of All Exams](#2-get-a-list-of-all-exams)
@@ -33,7 +33,8 @@
     - [2. Get Teacher Details by ID](#2-get-teacher-details-by-id)
     - [3. Get a List of All Teachers](#3-get-a-list-of-all-teachers)
     - [4. Update Teacher Information by ID](#4-update-teacher-information-by-id)
-    - [5. Delete a Teacher by ID](#5-delete-a-teacher-by-id)
+    - [5. Update Teacher Credential Information by ID](#5-update-teacher-credential-information-by-id)
+    - [6. Delete a Teacher by ID](#6-delete-a-teacher-by-id)
   - [Classroom](#classroom)
     - [1. Create a New Classroom](#1-create-a-new-classroom)
     - [2. Get Classroom Details by ID](#2-get-classroom-details-by-id)
@@ -69,28 +70,6 @@
     - [3. Get a List of All Meetings](#3-get-a-list-of-all-meetings)
 
 # Authentication Section
-### Registration
-- **Endpoint:** `auth/login`
-- **Method:** `POST`
-- **Description:** `To register with email and password.`
-- **Request Format:** `application/json`
-  ```json
-  {
-    "email": "john.doe@example.com",
-    "password": "password123"
-  }
-  ```
-- **Response Format:** `application/json`
-  - **Success Code:** `201 Created`
-    ```json
-    {
-      "id": "ObjectID(user)",
-      "message": "User registered successfully",
-      "password": "password123",
-      "email": "john.doe@example.com"
-    }
-    ```
-    <hr>
 ### Login
 - **Endpoint:** `auth/login`
 - **Method:** `POST`
@@ -141,10 +120,6 @@
   ```json
   {
     "firstName": "John",
-    "lastName": "Doe",
-    "username": "john_doe",
-    "password": "password123",
-    "email": "john.doe@example.com",
     "picture": "https://example.com/john_doe.jpg",
     "dateOfBirth": "1990-01-01",
     "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -156,10 +131,6 @@
     ```json
     {
       "id": "ObjectID(student)",
-      "firstName": "John",
-      "lastName": "Doe",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg",
       "dateOfBirth": "1990-01-01",
       "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -185,10 +156,6 @@
     ```json
     {
       "id": "ObjectID(student)",
-      "firstName": "John",
-      "lastName": "Doe",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg",
       "dateOfBirth": "1990-01-01",
       "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -216,8 +183,6 @@
         "id": "ObjectID(student)",
         "firstName": "John",
         "lastName": "Doe",
-        "username": "john_doe",
-        "email": "john.doe@example.com",
         "picture": "https://example.com/john_doe.jpg",
         "dateOfBirth": "1990-01-01",
         "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -227,8 +192,6 @@
         "id": "ObjectID(student)",
         "firstName": "Jane",
         "lastName": "Smith",
-        "username": "jane_smith",
-        "email": "jane.smith@example.com",
         "picture": "https://example.com/jane_smith.jpg",
         "dateOfBirth": "1992-02-02",
         "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -255,9 +218,6 @@
   {
     "firstName": "Mon",
     "lastName": "Doe",
-    "username": "mon_doe",
-    "password": "mon_doe",
-    "email": "mon.doe@example.com",
     "picture": "https://example.com/mon_doe.jpg",
     "dateOfBirth": "1990-01-01",
     "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -271,9 +231,6 @@
       "id": "ObjectID(student)",
       "firstName": "Mon",
       "lastName": "Doe",
-      "username": "mon_doe",
-      "password": "mon_doe",
-      "email": "mon.doe@example.com",
       "picture": "https://example.com/mon_doe.jpg",
       "dateOfBirth": "1990-01-01",
       "classrooms": ["ObjectID(classroom)", "ObjectID(classroom)"],
@@ -288,7 +245,40 @@
     ```
     <hr>
 
-### 5. Delete a Student by ID
+### 5. Update Student Credential Information by ID
+
+- **Endpoint:** `student/profile/update/user/:id`
+- **Method:** `PUT`
+- **Description:** `Updates login information for a specific student by User ID.`
+- **URL Parameters:** - `id`: User's ID (Example: `student/profile/update/user/101`)
+- **Request Format:** `application/json`
+  ```json
+  {
+
+    "username": "mon_doe",
+    "password": "mon_doe",
+    "email": "mon.doe@example.com"
+  }
+  ```
+- **Response Format:** `application/json`
+  - **Success Code:** `200 OK`
+    ```json
+    {
+      "id": "ObjectID(user)",
+      "username": "mon_doe",
+      "password": "mon_doe",
+      "email": "mon.doe@example.com",
+    }
+    ```
+  - **Error Code:** `404 Not Found`
+    ```json
+    {
+      "error": "User not found"
+    }
+    ```
+    <hr>
+
+### 6. Delete a Student by ID
 
 - **Endpoint:** `student/profile/delete/:id`
 - **Method:** `DELETE`
@@ -748,9 +738,6 @@
   {
     "firstName": "John",
     "lastName": "Doe",
-    "username": "john_doe",
-    "password": "password123",
-    "email": "john.doe@example.com",
     "picture": "https://example.com/john_doe.jpg"
   }
   ```
@@ -761,8 +748,6 @@
       "id": "ObjectID()",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg"
     }
     ```
@@ -787,8 +772,6 @@
       "id": "ObjectID(teacher)",
       "firstName": "John",
       "lastName": "Doe",
-      "username": "john_doe",
-      "email": "john.doe@example.com",
       "picture": "https://example.com/john_doe.jpg"
     }
     ```
@@ -813,16 +796,12 @@
         "id": "ObjectID(teacher)",
         "firstName": "John",
         "lastName": "Doe",
-        "username": "john_doe",
-        "email": "john.doe@example.com",
         "picture": "https://example.com/john_doe.jpg"
       },
       {
         "id": "ObjectID(teacher)",
         "firstName": "Jane",
         "lastName": "Smith",
-        "username": "jane_smith",
-        "email": "jane.smith@example.com",
         "picture": "https://example.com/jane_smith.jpg"
       }
     ]
@@ -847,8 +826,6 @@
     "firstName": "Mon",
     "lastName": "Doe",
     "username": "mon_doe",
-    "password": "mon_password",
-    "email": "mon.doe@example.com",
     "picture": "https://example.com/mon_doe.jpg"
   }
   ```
@@ -859,8 +836,6 @@
       "id": "ObjectID(teacher)",
       "firstName": "Mon",
       "lastName": "Doe",
-      "username": "mon_doe",
-      "email": "mon.doe@example.com",
       "picture": "https://example.com/updated_doe.jpg"
     }
     ```
@@ -871,8 +846,40 @@
     }
     ```
     <hr>
+### 5. Update Teacher Credential Information by ID
 
-### 5. Delete a Teacher by ID
+- **Endpoint:** `teacher/profile/update/user/:id`
+- **Method:** `PUT`
+- **Description:** `Updates login information for a specific teacher by User ID.`
+- **URL Parameters:** - `id`: User's ID (Example: `teacher/profile/update/user/101`)
+- **Request Format:** `application/json`
+  ```json
+  {
+
+    "username": "mon_doe",
+    "password": "mon_doe",
+    "email": "mon.doe@example.com"
+  }
+  ```
+- **Response Format:** `application/json`
+  - **Success Code:** `200 OK`
+    ```json
+    {
+      "id": "ObjectID(user)",
+      "username": "mon_doe",
+      "password": "mon_doe",
+      "email": "mon.doe@example.com",
+    }
+    ```
+  - **Error Code:** `404 Not Found`
+    ```json
+    {
+      "error": "User not found"
+    }
+    ```
+    <hr>
+    
+### 6. Delete a Teacher by ID
 
 - **Endpoint:** `teacher/profile/delete/:id`
 - **Method:** `DELETE`
@@ -1754,7 +1761,8 @@
     {
       "id": "ObjectID()",
       "title": "Meeting Title",
-      "url": "Meeting Lings",
+      "description": "Brief about meeting",
+      "url": "Meeting Links",
       "teacher": "ObjectID()", 
       "students": ["ObjectID()", "ObjectID()"], 
       "meetingTime": "2023-12-01T14:00:00"
@@ -1780,6 +1788,7 @@
       {
         "id": "ObjectID()",
         "title": "Meeting Title",
+        "description": "Brief about meeting",
         "url": "Meeting Lings",
         "teacher": "ObjectID()", 
         "students": ["ObjectID()", "ObjectID()"], 
@@ -1788,6 +1797,7 @@
       {
         "id": "ObjectID()",
         "title": "Meeting Title",
+        "description": "Brief about meeting",
         "url": "Meeting Lings",
         "teacher": "ObjectID()", 
         "students": ["ObjectID()", "ObjectID()"], 
